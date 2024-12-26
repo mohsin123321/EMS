@@ -3,6 +3,7 @@ package com.example.springframework.controller;
 import com.example.springframework.dto.request.LoginBody;
 import com.example.springframework.exception.AuthenticationException;
 import com.example.springframework.service.AuthService;
+import io.swagger.v3.oas.annotations.Operation;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -21,6 +22,13 @@ public class AuthController {
         this.authService = authService;
     }
 
+
+    /**
+     * Login to the application
+     * @param loginBody a request body containing email and password
+     * @return a response entity containing the token
+     */
+    @Operation(summary = "Login", description = "Login to the application")
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public ResponseEntity<String> login(@Valid @RequestBody LoginBody loginBody) {
         String email = loginBody.getEmail();
