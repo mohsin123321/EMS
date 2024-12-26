@@ -2,6 +2,7 @@ package com.example.springframework.controller;
 
 import com.example.springframework.dto.request.AddEmployeeBody;
 import com.example.springframework.service.EmployeeService;
+import io.swagger.v3.oas.annotations.Operation;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -20,7 +21,13 @@ public class EmployeeController {
     }
 
 
-    @PreAuthorize("hasRole('ADMIN')")
+    /**
+     * Add an employee to the database
+     * @param addEmployeeBody a request body containing employee details
+     * @return a response entity containing the id of the added employee
+     */
+    @Operation(summary = "Add Employee", description = "Add an employee to the database by the admin")
+    @PreAuthorize("hasRole(Role.ADMIN)")
     @RequestMapping(value = "/employee", method = RequestMethod.POST)
     public ResponseEntity<String> addEmployee(@Valid @RequestBody AddEmployeeBody addEmployeeBody) {
         // Add employee to database
