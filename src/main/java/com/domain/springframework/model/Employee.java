@@ -2,9 +2,7 @@ package com.domain.springframework.model;
 
 import com.domain.springframework.enums.Gender;
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.NonNull;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.List;
 import java.util.UUID;
@@ -12,6 +10,9 @@ import java.util.UUID;
 @Entity
 @Getter
 @Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
 public class Employee {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
